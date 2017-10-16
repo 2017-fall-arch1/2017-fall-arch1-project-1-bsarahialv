@@ -25,8 +25,18 @@ int main()
 
   llPrint(lp, "List contents, prior to reading input:");
 
-  while (gets_n(buf, 100))	/* build list */
-    llPut(lp, buf);
+   while (gets_n(buf, 100))	/* build list */
+        llPut(lp, buf);
+
+  // printf("How many employees?\n");
+  // int n,i;
+  // scanf ("%d", &n);
+  // for(i=0; i<n; i++){
+  // printf ("Enter the employee name \n");
+  // while( scanf(buf,100))
+  //  llPut(lp,buf);
+
+  //}
 
   llPrint(lp, "List contents, after building list:");
 
