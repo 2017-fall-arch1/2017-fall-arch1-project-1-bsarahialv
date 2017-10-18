@@ -31,15 +31,18 @@ tnode *btAlloc(){
 
 /* append a copy of str to end of list */
 tnode* btPut (tnode *b, char *str){
- if(b == NULL){
-   
-   b = newNode(str);
+  tnode* root;
+  if(b == NULL){
+    if(b->left ==NULL && b->right==NULL){
+      current= newNode(str);
+      return current;
+    }
   }
   else if (b != NULL){
     if(strcmp(str,b->str)<0){
       b->left = btPut (b->left, str);
     }
-    else if (strcmp(str,b->str)>0){
+    else {
       b->right = btPut (b->right,str);
     }
   }
@@ -71,6 +74,8 @@ tnode* newNode (char *str){
   temp->str =str;
   temp->left=NULL;
   temp->right=NULL;
+  printf("in node:%s\n", temp->str);
+  printf("variable%s", str);
   return temp;
 }
 
@@ -103,7 +108,55 @@ void bPrintPreorder (tnode *b){
     bPrintPreorder (b->left);
     bPrintPreorder (b->right);
   }
+}
+  //Remove
+tnode* Search (tnode *root, char *employee){
+    if(root == NULL){
+      return root;
+    }
+
+    tnode *current = root;
 
 
+    if(strcmp(employee, current->str)<0){
+      current->left = Search(current->left,employee);
+      }
+      else if (strcmp(employee, current->str)>0){
+	current->right = Search(current->right,employee);
+      }
+      else{
+	if(current->left == NULL){
+	  tnode *temp = current->right;
+	  free(current);
+	  return temp;
+
+	}
+	else if (current->right == NULL){
+	  tnode *temp = current->left;
+	  free(current);
+	  return temp;
+	}
+
+	tnode *temp = current->right; 
+
+	//tnode *temp = checkChildren (current->right);
+	current->str = temp->str;
+	current->right = Search(current->right, temp->str);
+	
+      }
+    return current;
 
 }
+
+ tnode* checkChildren (tnode *current){
+    tnode* temp = current;
+
+    while(temp->left != NULL){
+      temp =  temp->left;
+
+
+    }
+    return temp;
+
+
+ }
