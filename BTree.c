@@ -31,19 +31,32 @@ tnode *btAlloc(){
 
 /* append a copy of str to end of list */
 tnode* btPut (tnode *b, char *str){
-  tnode* root;
+  tnode* current;
+  tnode* parent;
   if(b == NULL){
-    if(b->left ==NULL && b->right==NULL){
-      current= newNode(str);
-      return current;
-    }
+    b = newNode(str);
   }
-  else if (b != NULL){
-    if(strcmp(str,b->str)<0){
-      b->left = btPut (b->left, str);
+
+  else{
+    current = b;
+    while(current!=NULL){
+      if(strcmp(str,current->str)<0){
+	parent = current;
+	current = current->left;
+      }
+      else if (strcmp(str,current->str)>0) {
+	parent = current;
+	current = current->right;
+      }
+      else{
+	return b;
+      }
     }
-    else {
-      b->right = btPut (b->right,str);
+    if(strcmp(str,parent->str)<0){
+      parent->left = newNode(str);
+    }
+    else{
+      parent->right=newNode(str);
     }
   }
  return b;
@@ -74,8 +87,8 @@ tnode* newNode (char *str){
   temp->str =str;
   temp->left=NULL;
   temp->right=NULL;
-  printf("in node:%s\n", temp->str);
-  printf("variable%s", str);
+  // printf("in node:%s\n", temp->str);
+  // printf("variable%s", str);
   return temp;
 }
 
