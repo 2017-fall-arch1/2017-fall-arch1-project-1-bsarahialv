@@ -1,26 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "BSTree.h"
+#include "BTree.h"
 
 /* create a new list */
 
-tnode *btAlloc();
-{
-  tnode *b = (tnode*) malloc (size of(tnode));
-  b-> leftt = b -> right = 0;
+tnode *btAlloc(){
+  tnode *b = (tnode*) malloc (sizeof(tnode));
+  b-> left = b -> right = 0;
   return b;
 }
 
 /* discarding all items it contains*/
-void btFree(tnode *b){
-  btMMakeEmpty(b);
+/*void btFree(tnode *b){
+  btMakeEmpty(b);
   free(b);
-}
+  }*/
 
 /*delete all items from the tree*/
-void btMakeEmpty(tnode *b){
-  tnode *current = b-> ,*next;
+/*void btMakeEmpty(tnode *b){
+  tnode *current = b-> *next;
   while(current){
     next = current->next;
     free(current->str);
@@ -28,23 +27,23 @@ void btMakeEmpty(tnode *b){
     current = next;
   }
   b =0 ;
-}
+  }*/
 
 /* append a copy of str to end of list */
-tnode* btPut (tnode *b, char *s){
- if(tnode == NULL){
+tnode* btPut (tnode *b, char *str){
+ if(b == NULL){
    
-   tnode = newNode(s);
+   b = newNode(str);
   }
-  else if (newNode != NULL){
-    if(strcmp(s,tnode->s)<0){
-      tnode->left = btPut (tnode->left, s);
+  else if (b != NULL){
+    if(strcmp(str,b->str)<0){
+      b->left = btPut (b->left, str);
     }
-    else if (strcmp(s,tnode->s)>0){
-      tnode->right = btPut (tnode->right,s):
+    else if (strcmp(str,b->str)>0){
+      b->right = btPut (b->right,str);
     }
   }
- return tnode;
+ return b;
 }
 
 /*int len;
@@ -65,29 +64,46 @@ tnode* btPut (tnode *b, char *s){
   }*/
 
 
-tnode* newNode (char *s){
+tnode* newNode (char *str){
   tnode *temp;
   temp = (tnode*) malloc (sizeof(tnode));
-  temp->s= malloc(sizeof(tnode));
-  temp->s =s;
+  temp->str= malloc(sizeof(tnode));
+  temp->str =str;
   temp->left=NULL;
   temp->right=NULL;
   return temp;
 }
 
+void padding (char ch, int n){
+  int i;
+  for(i=0; i<n;i++){
+    printf("%c%c%c%c", ch, ch, ch, ch);
 
-btPrint(tnode *b, int depth){
+  }
+}
+void btPrint(tnode *b, int depth){
   tnode *temp = b;
   if(b == NULL){
-    padding('',depth);
+    padding('c',depth);
     printf("-\n");
   }
   else{
-    btPrint(current->left, depth+1);
-    padding('',depth);
-    printf("%s\n", b->);
+         btPrint(temp->left, depth+1);
+    padding('c',depth);
+    printf("%s\n", b->str);
+    btPrint(temp->right,depth+1);
   }
 
 
 }
 
+void bPrintPreorder (tnode *b){
+  if( b!=NULL){
+    printf ("%s\n", b->str);
+    bPrintPreorder (b->left);
+    bPrintPreorder (b->right);
+  }
+
+
+
+}
