@@ -60,12 +60,12 @@ int main (char *s, int limit){
     }
     
 
-    printf("\t Root: \n");
-    printf("%s\n", root->str);
+    // printf("\t Root: \n");
+    // printf("%s\n", root->str);
    
     // int depth = 0;
     // btPrint(root,depth);
-    bPrintPreorder (current);
+    bPrintPreorder (root);
   }
   else if (a==2){
     
