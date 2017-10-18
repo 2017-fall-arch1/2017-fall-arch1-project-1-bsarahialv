@@ -35,17 +35,8 @@ int main (char *s, int limit){
 
   int a;
   char string[50];
-
-
-  // char buf[100];
-  //tnode *root = btAlloc();
-  // btPrint (root, "Tree prior to reading the file:");
-  //  root = btPut (root, str);
-  //btPrint(root,0);
-
-  // while (gets_n(buf,100))
-  // root= btPut(root,buf);
-  // btPrint(root, "Tree after reading the file:");
+  char employeeRemove[50];
+  
   tnode* root = NULL;
   
   printf("\n\t\t\t MENU \n\n\n");
@@ -56,25 +47,32 @@ int main (char *s, int limit){
 
   scanf("%d", &a);
   int num;
+  tnode *current;
   if(a == 1){
     printf("\t How many employees do you want to enter\n");
-    
     scanf("%d", &num);
-    // printf("num is \n", num);
+    
     while(num != 0){
       printf("\t Enter Employee Name:\n");
-      scanf("%s", string); //check if includes 0
-      // printf("str1 is: %s \n", string);
+      scanf("%s", string); 
       root = btPut(root,string);
       num -= 1;
-
     }
+    
+
+    printf("\t Root: \n");
+    printf("%s\n", root->str);
    
     // int depth = 0;
     // btPrint(root,depth);
-    bPrintPreorder (root);
+    bPrintPreorder (current);
   }
   else if (a==2){
+    
+
+    printf("\t Enter the name of the employee you want to delete\n");
+    scanf("%s", employeeRemove);
+    Search(root, employeeRemove);
   }
 
   else if (a==3){
