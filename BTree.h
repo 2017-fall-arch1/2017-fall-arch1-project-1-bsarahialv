@@ -31,4 +31,8 @@ void bPrintPreorder (tnode *b);
 /*check consistency, always returns zero*/
 //int btCheck(tnode *b);
 
+tnode* checkChildren (tnode *current);
+
+tnode* Seacrh (tnode *root, char *employee);
+
 #endif /*included*/
