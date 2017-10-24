@@ -1,14 +1,17 @@
-#ifndef llist_included
-#define llist_included
+#ifndef BTree_included
+#define BTree_included
 
-
-
+//define the structure of the nodes
 typedef struct tnode {
-    char *str;
+  char *str;
   struct tnode *left;
   struct tnode *right;
 
+ 
 } tnode;
+
+
+//Functions
 
 /*create a new node*/
   tnode *btAlloc();
@@ -17,7 +20,7 @@ typedef struct tnode {
 //void btFree(tnode *b);
 
 /*append a copy of str to end of list*/
-tnode* btPut(tnode *b, char *s);
+void btPut(char *s);
 
 tnode* newNode (char *s);
 
