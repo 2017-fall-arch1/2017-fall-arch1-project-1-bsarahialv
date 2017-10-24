@@ -3,8 +3,10 @@
 #include <assert.h>
 #include "BTree.h"
 
-/* create a new list */
 
+tnode *root;
+
+//allocate memory
 tnode *btAlloc(){
   tnode *b = (tnode*) malloc (sizeof(tnode));
   b-> left = b -> right = 0;
@@ -29,37 +31,36 @@ tnode *btAlloc(){
   b =0 ;
   }*/
 
-/* append a copy of str to end of list */
-tnode* btPut (tnode *b, char *str){
+//add input to the binary treee
+void btPut ( char *str){
+  tnode* insertion = newNode (str);
   tnode* current;
   tnode* parent;
-  if(b == NULL){
-    b = newNode(str);
+  
+  if(root == NULL){
+    root = insertion;
   }
 
   else{
-    current = b;
+    //locate the parent node
+    current = root;
     while(current!=NULL){
       if(strcmp(str,current->str)<0){
 	parent = current;
 	current = current->left;
       }
-      else if (strcmp(str,current->str)>0) {
+      else {
 	parent = current;
 	current = current->right;
       }
-      else{
-	return b;
-      }
     }
     if(strcmp(str,parent->str)<0){
-      parent->left = newNode(str);
+      parent->left = insertion;
     }
     else{
-      parent->right=newNode(str);
+      parent->right= insertion;
     }
   }
- return b;
 }
 
 /*int len;
@@ -85,8 +86,8 @@ tnode* newNode (char *str){
   temp = (tnode*) malloc (sizeof(tnode));
   temp->str= malloc(sizeof(tnode));
   temp->str =str;
-  temp->left=NULL;
-  temp->right=NULL;
+  temp->left=0;
+  temp->right=0;
   // printf("in node:%s\n", temp->str);
   // printf("variable%s", str);
   return temp;
