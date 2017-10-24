@@ -4,9 +4,9 @@
 #include <ctype.h>
 #include "BTree.h"
 
-tnode* readTree (char *s, int limit){
+//tnode* readTree (char *s, int limit){
   /*for indexing into s */
-  char *p = s;
+  /*char *p = s;
   char c;
 
   FILE *employees;
@@ -27,17 +27,17 @@ tnode* readTree (char *s, int limit){
       *p = 0;
   }
   return (p-s);
-}
+  }*/
 
 
 
 int main (char *s, int limit){
 
-  int a;
+  int option;
   char string[50];
   char employeeRemove[50];
   
-  tnode* root = NULL;
+  //tnode* root = NULL;
   
   printf("\n\t\t\t MENU \n\n\n");
   printf("\t 1) Add Emloyee\n");
@@ -45,19 +45,26 @@ int main (char *s, int limit){
   printf("\t 3) List all Employees\n");
 
 
-  scanf("%d", &a);
+  scanf("%d", &option);
   int num;
-  tnode *current;
+  //tnode *current;
   if(a == 1){
     printf("\t How many employees do you want to enter\n");
     scanf("%d", &num);
+    printf("\t Enter Employee Name:\n");
+    scanf ("%s", string);
+    btPut(string);
+    num -= 1;
+  printf("\t Root: ", root->str):
+
+
     
-    while(num != 0){
+    /*  while(num != 0){
       printf("\t Enter Employee Name:\n");
       scanf("%s", string); 
       root = btPut(root,string);
       num -= 1;
-    }
+      }*/
     
 
     // printf("\t Root: \n");
@@ -65,20 +72,22 @@ int main (char *s, int limit){
    
     // int depth = 0;
     // btPrint(root,depth);
-    bPrintPreorder (root);
+    // bPrintPreorder (root);
   }
   else if (a==2){
     
 
     printf("\t Enter the name of the employee you want to delete\n");
-    scanf("%s", employeeRemove);
-    Search(root, employeeRemove);
+    scanf("%s", employeeRemove);  //ask user for input
+    Search(root, employeeRemove); //function to remove
+    bPrintPreorder (root);
   }
 
   else if (a==3){
+    bPrintPreorder (root); //List the employees
   }
-
   else{
+    print("\t Select an option from the menu\n");
   }
     
 
